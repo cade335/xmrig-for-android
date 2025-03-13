@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "test": "nvm install && nvm use && npm install && npm test",
+    "build": "nvm install && nvm use && yarn install && yarn build",
+    "launch": "nvm install && nvm use && yarn && yarn start && yarn android"
+  }
+}

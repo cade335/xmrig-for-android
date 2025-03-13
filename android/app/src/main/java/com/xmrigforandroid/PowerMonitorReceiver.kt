@@ -10,9 +10,6 @@ import com.xmrigforandroid.events.StdoutEvent
 import org.greenrobot.eventbus.EventBus
 import android.os.BatteryManager
 
-
-
-
 class PowerMonitorReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {

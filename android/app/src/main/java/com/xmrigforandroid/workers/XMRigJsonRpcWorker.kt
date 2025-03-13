@@ -18,12 +18,12 @@ class XMRigJsonRpcWorker(appContext: Context, workerParams: WorkerParameters):
 
     override suspend fun doWork(): Result {
         return withContext(Dispatchers.IO) {
-            val method = inputData.getString("METHOD") ?: Result.failure();
-            Log.d(XMRigJsonRpcWorker.LOG_TAG, "Sending JSON RPC to XMRig: " + method)
-            val requestBody = "{\"method\":\"" + method + "\", \"id\": 1}"
+            val method = inputData.getString("METHOD") ?: return@withContext Result.failure()
+            Log.d(XMRigJsonRpcWorker.LOG_TAG, "Sending JSON RPC to XMRig: $method")
+            val requestBody = "{\"method\":\"$method\", \"id\": 1}"
             val request = Request.Builder()
                     .url("http://127.0.0.1:50080/json_rpc")
-                    .method("POST", requestBody.toRequestBody())
+                    .post(requestBody.toRequestBody())
                     .addHeader("Content-Type", "application/json")
                     .addHeader("Authorization", "Bearer XMRigForAndroid")
                     .build()
@@ -32,8 +32,7 @@ class XMRigJsonRpcWorker(appContext: Context, workerParams: WorkerParameters):
                 client.newCall(request).execute().use { response ->
                     if (!response.isSuccessful) {
                         Log.e(XMRigJsonRpcWorker.LOG_TAG, response.body.toString())
-                        Result.failure()
-                        throw IOException("Unexpected code $response")
+                        return@withContext Result.failure()
                     }
                     Result.success()
                 }
@@ -45,6 +44,6 @@ class XMRigJsonRpcWorker(appContext: Context, workerParams: WorkerParameters):
     }
 
     companion object {
-        val LOG_TAG = "XMRigJsonRpcWorker"
+        const val LOG_TAG = "XMRigJsonRpcWorker"
     }
 }
