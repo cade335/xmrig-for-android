@@ -13,7 +13,6 @@ import java.lang.StringBuilder
 import java.io.File
 import java.nio.charset.Charset
 
-
 class XMRigConfigBuilder(val context: Context) {
 
     var config: String

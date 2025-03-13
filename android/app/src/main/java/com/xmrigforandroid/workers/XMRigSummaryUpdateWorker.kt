@@ -5,9 +5,6 @@ import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.xmrigforandroid.events.MinerSummaryEvent
-import com.xmrigforandroid.events.ThermalEvent
-import com.xmrigforandroid.services.XMRigAPIService
-import com.xmrigforandroid.utils.CPUTemperatureHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
