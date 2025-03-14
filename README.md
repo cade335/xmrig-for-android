@@ -22,6 +22,20 @@ Google Play Store link: https://play.google.com/store/apps/details?id=com.xmrigf
 
 ![image](https://user-images.githubusercontent.com/97060076/148125819-b093ef76-b7ec-455f-866f-a489b5b53e59.png)
 
+## Creating an APK Release
+
+To create an APK release, follow these steps:
+
+1. Ensure you have the necessary signing configurations in `android/release-signing.properties`.
+2. Open a terminal and navigate to the `android` directory of the project.
+3. Run the following command to generate the APK release:
+
+   ```sh
+   ./gradlew assembleRelease
+   ```
+
+The generated APK file will be located in `android/app/build/outputs/apk/release/`.
+
 #### Credits
 * Splash Screen Artwork by [AOICARD](https://www.reddit.com/user/AOICARD/)
 
