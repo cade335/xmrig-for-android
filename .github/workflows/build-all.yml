@@ -1,12 +1,12 @@
 name: BuildAll
 
-#on: workflow_dispatch
+on: workflow_dispatch
 
-on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
+#on:
+#  pull_request:
+#    types: [closed]
+#    branches:
+#      - main
 
 #on:
 #  push:
@@ -104,5 +104,3 @@ jobs:
     #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     #  run: |
     #       hub release edit -dp -a ./android/app/build/outputs/bundle/release/xmrig-for-android_v${GITHUB_REF##*/}-signed.apk -a ./android/app/build/outputs/bundle/release/xmrig-for-android_v${GITHUB_REF##*/}.apk -a ./android/app/build/outputs/bundle/release/xmrig-for-android_v${GITHUB_REF##*/}.aab -m "${GITHUB_REF##*/}" ${GITHUB_REF##*/}
-      
-      
