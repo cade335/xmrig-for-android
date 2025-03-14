@@ -103,7 +103,7 @@ apply from: "../../node_modules/react-native/react.gradle"
  * Upload all the APKs to the Play Store and people will download
  * the correct one based on the CPU architecture of their device.
  */
-def enableSeparateBuildPerCPUArchitecture = false
+def enableSeparateBuildPerCPUArchitecture = true
 
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
@@ -166,42 +166,31 @@ android {
             include (*reactNativeArchitectures())
         }
     }
-    /*signingConfigs {
+    signingConfigs {
         debug {
             storeFile file('debug.keystore')
             storePassword 'android'
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
-	release {
-	    storeFile file('debug.keystore')
-        storePassword 'android'
-        keyAlias 'androiddebugkey'
-        keyPassword 'android'
-        if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
-                storeFile file(MYAPP_UPLOAD_STORE_FILE)
-                storePassword MYAPP_UPLOAD_STORE_PASSWORD
-                keyAlias MYAPP_UPLOAD_KEY_ALIAS
-                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
-            }
-	    }
-    }*/
+        release {
+            storeFile file('path/to/your/keystore.jks')
+            storePassword 'your_store_password'
+            keyAlias 'your_key_alias'
+            keyPassword 'your_key_password'
+        }
+    }
 
     buildTypes {
         debug {
-            //signingConfig signingConfigs.debug
-            //if (nativeArchitectures) {
+            signingConfig signingConfigs.debug
             ndk {
-                //abiFilters nativeArchitectures.split(',')
                 abiFilters (*reactNativeArchitectures())
             }
-            //}
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            //signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             shrinkResources true
             debuggable false

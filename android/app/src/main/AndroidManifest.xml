@@ -64,6 +64,8 @@
             android:enabled="true"
             android:exported="true"
             android:foregroundServiceType="connectedDevice" />
+
+        <meta-data android:name="firebase_analytics_collection_enabled" android:value="true" />
     </application>
 
 </manifest>
