@@ -11,6 +11,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
+import android.net.wifi.WifiManager;
 
 import com.xmrigforandroid.data.serialization.XMRigFork;
 import com.xmrigforandroid.events.MinerStartEvent;
@@ -114,6 +115,9 @@ public class MiningService extends Service {
         PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                 "XMRigForAndroid::MinerWakeLock");
         wakeLock.acquire();
+
+        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        wifiManager.setWifiEnabled(true);
 
         Log.i(LOG_TAG, "starting...");
         if (process != null) {
