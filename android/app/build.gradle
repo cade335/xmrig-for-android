@@ -214,6 +214,16 @@ android {
         }
     }
 
+    tasks.withType(JavaCompile) {
+        options.incremental = true
+    }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+        kotlinOptions.incremental = true
+    }
+
+    dependencyLocking {
+        lockAllConfigurations()
+    }
 }
 
 dependencies {

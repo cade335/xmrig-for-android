@@ -93,14 +93,28 @@ jobs:
           ./android/app/build/outputs/bundle/release/*.apk
           ./android/app/build/outputs/bundle/release/*.aab
         
-    #- name: Install hub
-    #  uses: geertvdc/setup-hub@master
-    #  env:
-    #    ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-    
-    #- name: run hub commands
-    #  env:
-    #    GITHUB_USER: ${{ secrets.USER }}
-    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #  run: |
-    #       hub release edit -dp -a ./android/app/build/outputs/bundle/release/xmrig-for-android_v${GITHUB_REF##*/}-signed.apk -a ./android/app/build/outputs/bundle/release/xmrig-for-android_v${GITHUB_REF##*/}.apk -a ./android/app/build/outputs/bundle/release/xmrig-for-android_v${GITHUB_REF##*/}.aab -m "${GITHUB_REF##*/}" ${GITHUB_REF##*/}
+    - name: Cache Gradle dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+        
+    - name: Cache Yarn dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: Cache build outputs
+      uses: actions/cache@v2
+      with:
+        path: |
+          ./android/app/build/outputs
+        key: ${{ runner.os }}-build-outputs-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-build-outputs-
