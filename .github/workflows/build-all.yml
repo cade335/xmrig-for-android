@@ -2,17 +2,6 @@ name: BuildAll
 
 on: workflow_dispatch
 
-#on:
-#  pull_request:
-#    types: [closed]
-#    branches:
-#      - main
-
-#on:
-#  push:
-#    tags:
-#      - '*'
-      
 jobs:
   build:
 
@@ -92,15 +81,3 @@ jobs:
         files: |
           ./android/app/build/outputs/bundle/release/*.apk
           ./android/app/build/outputs/bundle/release/*.aab
-        
-    #- name: Install hub
-    #  uses: geertvdc/setup-hub@master
-    #  env:
-    #    ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-    
-    #- name: run hub commands
-    #  env:
-    #    GITHUB_USER: ${{ secrets.USER }}
-    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #  run: |
-    #       hub release edit -dp -a ./android/app/build/outputs/bundle/release/xmrig-for-android_v${GITHUB_REF##*/}-signed.apk -a ./android/app/build/outputs/bundle/release/xmrig-for-android_v${GITHUB_REF##*/}.apk -a ./android/app/build/outputs/bundle/release/xmrig-for-android_v${GITHUB_REF##*/}.aab -m "${GITHUB_REF##*/}" ${GITHUB_REF##*/}
