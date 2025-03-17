@@ -3,10 +3,10 @@ const fs = require('fs');
 
 const values = properties.of('version.properties');
 
-const package = require('./package.json');
+const packageJson = require('./package.json');
 
 const newPackage = {
-  ...package,
+  ...packageJson,
   version: `${values.getInt('majorVersion')}.${values.getInt('minorVersion')}.${values.getInt('patchVersion')}`,
 };
 
