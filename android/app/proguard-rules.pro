@@ -73,3 +73,18 @@ com.xmrigforandroid.data.serialization.Configuration
 
 # Keep necessary annotations and attributes
 -keepattributes RuntimeVisibleAnnotations,AnnotationDefault
+# Keep necessary classes and methods for the release build
+-keep class com.xmrigforandroid.** { *; }
+-keep class com.xmrigforandroid.services.** { *; }
+-keep class com.xmrigforandroid.utils.** { *; }
+-keep class com.xmrigforandroid.workers.** { *; }
+-keep class com.xmrigforandroid.data.serialization.** { *; }
+
+# Optimize ProGuard rules for the release build
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+-keepattributes Signature,InnerClasses,EnclosingMethod
+-dontwarn com.xmrigforandroid.**
+-dontwarn com.xmrigforandroid.services.**
+-dontwarn com.xmrigforandroid.utils.**
+-dontwarn com.xmrigforandroid.workers.**
+-dontwarn com.xmrigforandroid.data.serialization.**

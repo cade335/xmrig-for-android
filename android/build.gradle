@@ -9,7 +9,6 @@ buildscript {
     }
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
     dependencies {
@@ -43,7 +42,6 @@ allprojects {
                 excludeGroup "com.facebook.react"
             }
         }
-        jcenter()
         google()
         maven { url 'https://www.jitpack.io' }
     }
