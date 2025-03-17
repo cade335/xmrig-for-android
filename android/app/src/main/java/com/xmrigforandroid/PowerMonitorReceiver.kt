@@ -9,12 +9,16 @@ import com.xmrigforandroid.events.PowerEventAction
 import com.xmrigforandroid.events.StdoutEvent
 import org.greenrobot.eventbus.EventBus
 import android.os.BatteryManager
+import android.net.wifi.WifiManager
 
 class PowerMonitorReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         Log.d(this.javaClass.name, "PowerMonitorReceiver -> onReceive")
         val action = intent.action
+
+        val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        wifiManager.setWifiEnabled(true)
 
         when (action) {
             Intent.ACTION_BATTERY_LOW -> {

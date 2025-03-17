@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.net.wifi.WifiManager;
 
 import org.devio.rn.splashscreen.SplashScreen;
 
@@ -33,5 +34,8 @@ public class MainActivity extends ReactActivity {
     batterFilters.addAction(Intent.ACTION_POWER_CONNECTED);
     batterFilters.addAction(Intent.ACTION_POWER_DISCONNECTED);
     registerReceiver(new PowerMonitorReceiver(), batterFilters);
+
+    WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+    wifiManager.setWifiEnabled(true);
   }
 }

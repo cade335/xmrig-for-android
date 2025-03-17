@@ -54,6 +54,25 @@ com.xmrigforandroid.data.serialization.Configuration
 -keep class com.swmansion.reanimated.** { *; }
 -keep class com.facebook.react.turbomodule.** { *; }
 
+# Keep only necessary classes and methods
+-keep class com.xmrigforandroid.** { *; }
+
+# Use wildcards to keep entire packages or groups of classes
+-keep class com.xmrigforandroid.** { *; }
+
+# Minimize the use of `-keep` rules
+# No additional `-keep` rules added
+
+# Enable shrinking and obfuscation
+-optimizationpasses 5
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontpreverify
+-verbose
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+
+# Keep necessary annotations and attributes
+-keepattributes RuntimeVisibleAnnotations,AnnotationDefault
 # Keep necessary classes and methods for the release build
 -keep class com.xmrigforandroid.** { *; }
 -keep class com.xmrigforandroid.services.** { *; }

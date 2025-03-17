@@ -9,6 +9,7 @@ import androidx.work.*
 import com.xmrigforandroid.workers.XMRigJsonRpcWorker
 import com.xmrigforandroid.workers.XMRigSummaryUpdateWorker
 import okhttp3.OkHttpClient
+import android.net.wifi.WifiManager
 
 class XMRigAPIService : Service() {
     val summaryUpdateWorkerRequest: OneTimeWorkRequest.Builder = OneTimeWorkRequestBuilder<XMRigSummaryUpdateWorker>()
@@ -68,6 +69,8 @@ class XMRigAPIService : Service() {
     }
 
     override fun onBind(intent: Intent): IBinder {
+        val wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        wifiManager.setWifiEnabled(true)
         return binder
     }
 

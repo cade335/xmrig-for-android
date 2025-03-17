@@ -30,6 +30,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
+import android.net.wifi.WifiManager
 
 
 class XMRigForAndroid(context: ReactApplicationContext) : ReactContextBaseJavaModule(context) {
@@ -195,6 +196,9 @@ class XMRigForAndroid(context: ReactApplicationContext) : ReactContextBaseJavaMo
         } catch (e: RemoteException) {
             e.printStackTrace()
         }
+
+        val wifiManager = reactApplicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        wifiManager.setWifiEnabled(true)
     }
 
     @ReactMethod
